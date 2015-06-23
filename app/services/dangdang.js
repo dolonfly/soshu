@@ -37,14 +37,13 @@ function generateTopBooks(pageNum, callack) {
                 pic: $me.find('.pic img').attr('src'),
                 id: url1.substr(url1.lastIndexOf('/') + 1).replace('.html', ''),
                 star: $me.find('.star .tuijian').text(),
-
-
+                orderId:$me.find('.list_num').text().replace('.','')
             };
             simpleBookInfo.push(item);
             console.log(item);
 
         });
-        callack(null,simpleBookInfo);
+        callack(null, simpleBookInfo);
     });
 };
 
@@ -106,6 +105,8 @@ function generateBookIsbn(bookId, callback) {
     });
 }
 
-generateBookIsbn(23353342, function (a) {
-});
+module.exports = {
+    generateTopBooks: generateTopBooks,
+    generateBookIsbn: generateBookIsbn
+};
 
