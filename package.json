@@ -13,9 +13,13 @@
     "jade": "~1.9.2",
     "morgan": "~1.5.3",
     "serve-favicon": "~2.2.1",
-    "cheerio":"0.12.3",
+    "cheerio": "0.12.3",
     "request": "~2.58.0",
-    "iconv-lite":"~0.4.10",
-    "mongoose": "^3.8.24"
+    "iconv-lite": "~0.4.10",
+    "mongoose": "^3.8.24",
+    "lodash": "^3.5.0",
+    "perrier": "^0.3.3",
+    "winston": "^0.9.0",
+    "fs-extra": "^0.18.0",
   }
 }

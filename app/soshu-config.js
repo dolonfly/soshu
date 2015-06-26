@@ -1,6 +1,3 @@
-/**
- * Created by dll on 15/6/22.
- */
 "use strict";
 
 var perrier = require('perrier');

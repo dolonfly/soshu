@@ -1,0 +1,5 @@
+{
+  "global": {
+    "DB_NAME": "soshu-local"
+  }
+}
