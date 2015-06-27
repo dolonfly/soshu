@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require("./app/soshu-config");
-var SoshuLogger = require("./app/soshu-config");
+var SoshuLogger = require("./app/soshu-logger");
+var cronJob = require('cron').CronJob;
 
 var apiRoutes = require('./app/routes/api-routes');
 var webRoutes = require('./app/routes/web-routes');
@@ -60,6 +61,8 @@ app.use(function (err, req, res, next) {
 
 require("./app/models/soshu-mongo").init(config.db);
 SoshuLogger.info("Load config as: " + JSON.stringify(config));
+
+//var job = new cronJob();
 
 
 module.exports = app;

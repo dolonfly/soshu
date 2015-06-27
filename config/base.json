@@ -6,5 +6,6 @@
       "replset": {"socketOptions": {"keepAlive": 1}}
     }
   },
+  "autoUpdate": "{{cronTime}}",
   "logDir": "{{ROOT_DIR}}/logs"
 }

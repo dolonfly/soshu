@@ -13,7 +13,7 @@ var BookSchema = new Schema({
     orderId: Number,
     isbn10: String,
     isbn13: String,
-    author: [String],
+    author: String,
     authorIntro: String,
     publisher: String,
     publishTime: String,
@@ -26,8 +26,10 @@ var BookSchema = new Schema({
     catalog: String,
     preface: String
 
+}, {
+    collection: 'books'
 });
 
 var Book = mongoose.model('Book', BookSchema);
 
-module.exports = Book;
+module.exports =Book;
