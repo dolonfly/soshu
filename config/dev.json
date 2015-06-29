@@ -1,6 +1,6 @@
 {
   "global": {
     "DB_NAME": "soshu-local",
-    "cronTime": "* */30 * * *"
+    "cronTime": "* * 0 * *"
   }
 }

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var config = require("./app/soshu-config");
 var SoshuLogger = require("./app/soshu-logger");
 var cronJob = require('cron').CronJob;
+var spawn = require('child_process').spawn;
 
 var apiRoutes = require('./app/routes/api-routes');
 var webRoutes = require('./app/routes/web-routes');
@@ -62,7 +63,16 @@ app.use(function (err, req, res, next) {
 require("./app/models/soshu-mongo").init(config.db);
 SoshuLogger.info("Load config as: " + JSON.stringify(config));
 
-//var job = new cronJob();
+var job = new cronJob(config.autoUpdate, function () {
+    console.log("定时任务开启");
+    var autoUpdateBooks = spawn(process.execPath, [path.resolve(__dirname, 'app/task/top-dangdang')]);
+    autoUpdateBooks.stdout.pipe(process.stdout);
+    autoUpdateBooks.stderr.pipe(process.stderr);
+    autoUpdateBooks.on('close', function (code) {
+        console.log('更新任务结束，代码=%d', code);
+    });
+});
+job.start();
 
 
 module.exports = app;

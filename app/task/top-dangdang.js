@@ -13,6 +13,7 @@ function fetchAndSave() {
             saveOnePage(pageNum);
             console.log("page " + pageNum + " done");
             pageNum++;
+            callback();
         },
         function (err) {
 

@@ -10,13 +10,13 @@ function searchTopBooks(req, res, next) {
     if (source == null) {
         source = 'dd';
     }
-    if (page==null||page < 0 || page > 25) {
+    if (page == null || page < 0 || page > 25) {
         page = 0;
     }
     var offset = page * 20;
     console.log('source:' + source + ",page:" + page + ",offset:" + offset);
     searchTopBooksService.listTopBooks(source, offset, 20, function (err, resout) {
-        res.write(resout.toString());
+        res.json(resout);
     });
 
 }
