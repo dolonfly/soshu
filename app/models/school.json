@@ -1,0 +1,19 @@
+[
+  {
+    "province": "河南",
+    "schools": [
+      {
+        "name": "中原工学院",
+        "name_en": "zut",
+        "code": "zut",
+        "apiPerfix": "",
+        "homePage": "http://www.zut.edu.cn/",
+        "province": "河南",
+        "city": "郑州",
+        "active": false
+      },
+      {}
+    ]
+  },
+  {}
+]
