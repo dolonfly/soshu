@@ -1,0 +1,29 @@
+{
+  "zut": {
+    "api": {
+      "searchUrl": "http://202.196.33.227:8080/opac_two/search2/searchout.jsp",
+      "searchParameter": "opacsearchSw={keyword}&suchen_type=1&kind=simple&show_type=wenzi&snumber_type=Y&search_no_type=Y&suchen_word={keyword}"
+    },
+    "method": "get",
+    "template": "html",
+    "encoding": "gbk",
+    "selecter": {
+      "elements": "div[id=searchout_tuwen] table tr[class]",
+      "element": {
+        "sid": {
+          "selecter": "a",
+          "attr": "href",
+          "regex": "",
+          "replaceAllText": "s_detail.jsp?sid="
+        },
+        "isbn": {
+          "selecter": "td",
+          "sliceStart": 4,
+          "sliceEnd": 5,
+          "regex": "",
+          "replaceAllText": "-"
+        }
+      }
+    }
+  }
+}
