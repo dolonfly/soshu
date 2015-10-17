@@ -5,11 +5,14 @@ var express = require('express');
 var router = express.Router();
 var dangdang_search = require('../api/topBooks');
 var school_info = require('../api/school-info');
+var book_search = require('../api/book-search');
 
 
 router.get('/listTopBooks', dangdang_search.listTopBooks);
 
-router.get('/school_list', school_info.list)
-router.get('/school_save', school_info.save)
+router.get('/school_list', school_info.list);
+router.get('/school_save', school_info.save);
+
+router.get('/book/search', book_search.search);
 
 module.exports = router;

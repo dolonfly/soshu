@@ -41,16 +41,34 @@ function searchBooksFromSchool(code, keyword, callback) {
             var isbn = $me.find(libraryTemplate[code].selecter.element.isbn.selecter).slice(libraryTemplate[code].selecter.element.isbn.sliceStart, libraryTemplate[code].selecter.element.isbn.sliceEnd).text().trim();
             isbn = isbn.replace(new RegExp(libraryTemplate[code].selecter.element.isbn.replaceAllText, "g"), "");
 
+            //以下内容可选
+            var title = $me.find(libraryTemplate[code].selecter.element.title.selecter).slice(libraryTemplate[code].selecter.element.title.sliceStart, libraryTemplate[code].selecter.element.title.sliceEnd).text().trim();
+            title = title.replace(new RegExp(libraryTemplate[code].selecter.element.title.replaceAllText, "g"), "");
+
+            var publisher = $me.find(libraryTemplate[code].selecter.element.publisher.selecter).slice(libraryTemplate[code].selecter.element.publisher.sliceStart, libraryTemplate[code].selecter.element.publisher.sliceEnd).text().trim();
+            //publisher = publisher.replace(new RegExp(libraryTemplate[code].selecter.element.publisher.replaceAllText, "g"), "");
+
+            var pubDate = $me.find(libraryTemplate[code].selecter.element.pubDate.selecter).slice(libraryTemplate[code].selecter.element.pubDate.sliceStart, libraryTemplate[code].selecter.element.pubDate.sliceEnd).text().trim();
+            pubDate = pubDate.replace(new RegExp(libraryTemplate[code].selecter.element.pubDate.replaceAllText, "g"), "");
+
+            var author = $me.find(libraryTemplate[code].selecter.element.author.selecter).slice(libraryTemplate[code].selecter.element.author.sliceStart, libraryTemplate[code].selecter.element.author.sliceEnd).text().trim();
+            //author = author.replace(new RegExp(libraryTemplate[code].selecter.element.author.replaceAllText, "g"), "");
+
             var data = {
                 sid: sid,
-                isbn: isbn
+                isbn: isbn,
+                author: author,
+                publisher: publisher,
+                pubDate: pubDate,
+                title: title
             };
             datas.push(data);
+
         });
-        callback(null, datas);
+        callback(err, datas);
     });
 }
 
-searchBooksFromSchool("zut", "java", function (err,data) {
-    console.log(data);
-});
+module.exports = {
+    search: searchBooksFromSchool
+};

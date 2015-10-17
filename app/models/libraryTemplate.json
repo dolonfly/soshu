@@ -22,6 +22,34 @@
           "sliceEnd": 5,
           "regex": "",
           "replaceAllText": "-"
+        },
+        "title": {
+          "selecter": "td",
+          "sliceStart": 1,
+          "sliceEnd": 2,
+          "regex": "",
+          "replaceAllText": ""
+        },
+        "author": {
+          "selecter": "td",
+          "sliceStart": 2,
+          "sliceEnd": 3,
+          "regex": "",
+          "replaceAllText": ""
+        },
+        "publisher": {
+          "selecter": "td",
+          "sliceStart": 3,
+          "sliceEnd": 4,
+          "regex": "",
+          "replaceAllText": ""
+        },
+        "pubDate": {
+          "selecter": "td",
+          "sliceStart": 5,
+          "sliceEnd": 6,
+          "regex": "",
+          "replaceAllText": ""
         }
       }
     }
