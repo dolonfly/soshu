@@ -1,11 +1,16 @@
 "use strict"
 
+var iconv = require('iconv-lite');
+var urlEncode4Ascii = require('../utils/UrlEncode4Ascii');
 var search = require('../services/school/search');
+
 
 function searchBook(req, res, next) {
     var keyword = req.query.keyword,
         school = req.query.school;
-    if (!keyword||!school) {
+    keyword = urlEncode4Ascii.urlEncode4Ascii(keyword);
+    console.log(keyword);
+    if (!keyword || !school) {
         res.status(400).send({
             code: 400,
             message: 'keyword and school  required'

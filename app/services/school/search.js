@@ -10,6 +10,7 @@ var debug = require('debug')('api:dangdang');
 var libraryTemplate = require("../../models/libraryTemplate");
 
 function searchBooksFromSchool(code, keyword, callback) {
+    console.log("get keword:"+keyword);
     var url = libraryTemplate[code].api.searchUrl;
     var parameter = libraryTemplate[code].api.searchParameter;
     parameter = parameter.replace(/{keyword}/g, keyword);
