@@ -122,7 +122,3 @@ module.exports = {
     generateTopBooks: generateTopBooks,
     generateBookIsbn: generateBookIsbn
 };
-
-generateBookIsbn('23698637', function (err, res) {
-
-});

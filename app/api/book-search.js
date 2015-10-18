@@ -1,15 +1,13 @@
 "use strict"
 
 var iconv = require('iconv-lite');
-var urlEncode4Ascii = require('../utils/UrlEncode4Ascii');
-var search = require('../services/school/search');
-
+var supportSchools = require('../models/support-school');
 
 function searchBook(req, res, next) {
     var keyword = req.query.keyword,
-        school = req.query.school;
-    keyword = urlEncode4Ascii.urlEncode4Ascii(keyword);
-    console.log(keyword);
+        school = req.query.school,
+        page = req.query.page;
+    console.log(supportSchools.schoolArray);
     if (!keyword || !school) {
         res.status(400).send({
             code: 400,
@@ -17,11 +15,19 @@ function searchBook(req, res, next) {
         });
         return;
     }
-    search.search(school, keyword, function (err, data) {
+    if (!page || page < 0) {
+        page = 1;
+    }
+
+
+    var search = require('../services/school/' + school);
+
+    search.search(school, keyword, page, function (err, data) {
         if (err) {
             res.status(500).send({
                 code: 500,
-                message: 'some thing wrong,fixing!'
+                message: 'some thing wrong,fixing!',
+                detail: err
             });
             return;
         } else {

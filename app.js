@@ -8,6 +8,7 @@ var config = require("./app/soshu-config");
 var SoshuLogger = require("./app/soshu-logger");
 var cronJob = require('cron').CronJob;
 var spawn = require('child_process').spawn;
+var supportSchools = require('./app/models/support-school');
 
 var apiRoutes = require('./app/routes/api-routes');
 var webRoutes = require('./app/routes/web-routes');
@@ -25,6 +26,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use(function (req, res, next) {
+    var school = req.query.school;
+    if (!school) {
+        res.status(400).json({
+            message: "school code required"
+        });
+    }
+    if (supportSchools.schoolArray.indexOf(school) < 0) {
+        res.status(400).json({
+            message: "valid code required"
+        });
+    }
+    next();
+
+});
 
 app.use('/api/v1', apiRoutes);
 app.use('/', webRoutes);
@@ -59,6 +77,7 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
+
 
 require("./app/models/soshu-mongo").init(config.db);
 SoshuLogger.info("Load config as: " + JSON.stringify(config));
