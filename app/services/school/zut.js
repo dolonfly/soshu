@@ -33,6 +33,12 @@ function searchBooksFromSchool(code, keyword, page, callback) {
         var $ = cheerio.load(html);
 
         var datas = [];
+        var page = {
+            curpage: $('span[class=opac_red]').slice(0, 1).text(),
+            pages: $('span[class=opac_red]').slice(2, 3).text(),
+            totleNum: $('span[class=opac_red]').slice(3, 4).text()
+        };
+
         $('div[id=searchout_tuwen] table tr[class]').each(function () {
             var $me = $(this);
             var sid = $me.find('a').attr('href');
@@ -50,9 +56,6 @@ function searchBooksFromSchool(code, keyword, page, callback) {
 
             var author = $me.find('td').slice(2, 3).text().trim();
 
-            var totleNum = $('span[class=opac_red]').slice(0, 1).text();
-            var curpage = $('span[class=opac_red]').slice(2, 3).text();
-            var pages = $('span[class=opac_red]').slice(3, 4).text();
 
             var data = {
                 sid: sid,
@@ -61,16 +64,11 @@ function searchBooksFromSchool(code, keyword, page, callback) {
                 publisher: publisher,
                 pubDate: pubDate,
                 title: title,
-                page: {
-                    curpage: curpage,
-                    pages: pages,
-                    totleNum: totleNum
-                }
             };
             datas.push(data);
 
         });
-        callback(err, datas);
+        callback(err, {data: datas, page: page});
     });
 }
 

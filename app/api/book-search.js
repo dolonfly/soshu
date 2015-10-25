@@ -30,10 +30,8 @@ function searchBook(req, res, next) {
             });
             return;
         } else {
-            res.json({
-                code: 200,
-                data: data
-            });
+            data.code = 200;
+            res.json(data);
         }
     });
 }
