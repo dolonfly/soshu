@@ -34,13 +34,13 @@ app.use(function (req, res, next) {
         res.status(400).json({
             message: "school code required"
         });
-    }
-    if (supportSchools.schoolArray.indexOf(school) < 0) {
+    } else if (supportSchools.schoolArray.indexOf(school) < 0) {
         res.status(400).json({
             message: "valid code required"
         });
+    } else {
+        next();
     }
-    next();
 
 });
 

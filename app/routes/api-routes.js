@@ -14,5 +14,6 @@ router.get('/school_list', school_info.list);
 router.get('/school_save', school_info.save);
 
 router.get('/book/search', book_search.search);
+router.get('/book/stock', book_search.stock);
 
 module.exports = router;

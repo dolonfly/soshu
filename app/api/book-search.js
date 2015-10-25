@@ -7,7 +7,6 @@ function searchBook(req, res, next) {
     var keyword = req.query.keyword,
         school = req.query.school,
         page = req.query.page;
-    console.log(supportSchools.schoolArray);
     if (!keyword || !school) {
         res.status(400).send({
             code: 400,
@@ -37,9 +36,37 @@ function searchBook(req, res, next) {
             });
         }
     });
+}
 
+function searchStock(req, res, next) {
+    var school = req.query.school,
+        sid = req.query.sid;
+    if (!school || !sid) {
+        res.status(400).send({
+            code: 400,
+            message: 'sid and school  required'
+        });
+        return;
+    }
+    var search = require('../services/school/' + school);
+    search.stock(school, sid, function (err, data) {
+        if (err) {
+            res.status(500).send({
+                code: 500,
+                message: 'some thing wrong,fixing!',
+                detail: err
+            });
+            return;
+        } else {
+            res.json({
+                code: 200,
+                data: data
+            });
+        }
+    });
 }
 
 module.exports = {
-    search: searchBook
+    search: searchBook,
+    stock: searchStock
 }
