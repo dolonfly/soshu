@@ -34,9 +34,9 @@ function searchBooksFromSchool(code, keyword, page, callback) {
 
         var datas = [];
         var page = {
-            curpage: $('span[class=opac_red]').slice(0, 1).text(),
-            pages: $('span[class=opac_red]').slice(2, 3).text(),
-            totleNum: $('span[class=opac_red]').slice(3, 4).text()
+            curpage: $('span[class=opac_red]').slice(2, 3).text(),
+            pages: $('span[class=opac_red]').slice(3, 4).text(),
+            totleNum: $('span[class=opac_red]').slice(0, 1).text()
         };
 
         $('div[id=searchout_tuwen] table tr[class]').each(function () {
